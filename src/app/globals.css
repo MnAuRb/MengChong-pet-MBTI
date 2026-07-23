@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Warm color palette — 萌宠MBTI design system */
+  --color-warm: #FF8C42;
+  --color-warm-light: #FFF3E0;
+  --color-warm-dark: #2D1B14;
+  --color-warm-50: #FFF8F0;
+  --color-warm-100: #FFECD9;
+  --color-warm-200: #FFD9B3;
+  --color-warm-300: #FFC58C;
+  --color-warm-400: #FFB266;
+  --color-warm-500: #FF8C42;
+  --color-warm-600: #E67A38;
+  --color-warm-700: #CC6B2E;
+  --color-warm-800: #B35C24;
+  --color-warm-900: #994D1A;
+
+  /* Background */
+  --color-background: #FFF8F0;
+  --color-foreground: #2D1B14;
+
+  /* Font */
+  --font-sans: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", system-ui, -apple-system, sans-serif;
+
+  /* Border radius — "胖乎乎"可爱感 */
+  --radius-card: 1.5rem;
+  --radius-button: 1rem;
+}
+
+/* Reset & base */
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
