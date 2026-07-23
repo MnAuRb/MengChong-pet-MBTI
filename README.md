@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🐾 萌宠 MBTI
 
-## Getting Started
+通过趣味宠物人格测试，发现属于你家毛孩子的独特人格。
 
-First, run the development server:
+> 一只 INTJ 猫咪军师，还是一只 ENFP 快乐小狗？完成 5 分钟测试，解锁专属宠物 MBTI 人格，生成海报分享到朋友圈！
+
+---
+
+## ✨ 功能
+
+- 🐱 **宠物信息填写** — 输入名字、选择猫/狗/其他、年龄
+- 🧠 **20 道行为测试题** — 场景化问题，贴近真实宠物日常
+- 🎯 **16 种 MBTI 人格** — 每种人格配有专属昵称、解读、金句、建议
+- ⏳ **加载动画** — 可爱的 Emoji 粒子动画，制造期待感
+- 📤 **分享海报** — 高清海报，长按保存分享到微信/小红书
+- 📊 **数据埋点** — 匿名追踪用户行为（完成率、分享率）
+- 📱 **移动端优先** — 375px 基准设计，完美适配手机屏幕
+
+---
+
+## 🛠 技术栈
+
+| 分类 | 技术 |
+|---|---|
+| 框架 | Next.js 16 + React 19 |
+| 语言 | TypeScript |
+| 样式 | Tailwind CSS v4 |
+| 动画 | Framer Motion |
+| 海报生成 | @vercel/og (Satori) |
+| 数据库 | Supabase (PostgreSQL) |
+| 部署 | Vercel |
+
+---
+
+## 🚀 本地运行
 
 ```bash
+# 安装依赖
+npm install
+
+# 配置环境变量
+cp .env.example .env.local
+# 编辑 .env.local，填入你的 Supabase URL 和 Key
+
+# 启动开发服务器
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+打开 [http://localhost:3000](http://localhost:3000) 查看效果。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📁 项目结构
 
-## Learn More
+```
+src/
+├── app/
+│   ├── page.tsx                  # 首页
+│   ├── layout.tsx                # 全局布局 + OG 标签
+│   ├── not-found.tsx             # 404 页面
+│   ├── error.tsx                 # 全局错误边界
+│   ├── test/page.tsx             # 测试页（信息填写 + 20题）
+│   ├── loading/page.tsx          # 加载动画页
+│   ├── result/page.tsx           # 结果展示页
+│   ├── share/page.tsx            # 分享海报页
+│   └── api/
+│       ├── calculate/            # MBTI 计算 API
+│       ├── generate-poster/      # 海报生成 API
+│       └── track/                # 数据埋点 API
+├── components/
+│   ├── test/                     # 测试相关组件
+│   │   ├── PetInfoForm.tsx       # 宠物信息表单
+│   │   ├── QuestionCard.tsx      # 单题卡片
+│   │   └── ProgressBar.tsx       # 进度条
+│   └── result/
+│       └── ResultCard.tsx        # 结果卡片
+├── data/
+│   ├── questions.ts              # 20 道测试题
+│   └── results.ts                # 16 种 MBTI 人格
+├── lib/
+│   ├── mbti-calculator.ts        # MBTI 计算逻辑
+│   ├── analytics.ts              # 埋点工具
+│   └── supabase-server.ts        # 服务端数据库客户端
+└── types/index.ts                # TypeScript 类型定义
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔒 环境变量
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Key | 说明 |
+|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase 项目 URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase 匿名 Key（客户端安全） |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase 服务端 Key（仅服务端，不暴露） |
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📊 数据埋点
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+追踪以下关键事件，用于验证产品传播闭环：
+
+- `page_view_home` — 首页访问
+- `click_start_test` — 点击开始测试
+- `test_started` / `test_completed` — 测试开始/完成
+- `page_view_result` — 查看结果
+- `click_share` / `share_completed` — 分享行为
+- `click_retest` — 重新测试
+
+---
+
+## 📄 许可
+
+MIT
