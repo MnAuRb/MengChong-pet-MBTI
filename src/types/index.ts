@@ -52,11 +52,6 @@ export interface CalculateResponse {
   type: MBTIType;
 }
 
-export interface PosterRequest {
-  mbtiType: MBTIType;
-  petName: string;
-}
-
 // ===== 数据埋点 =====
 export type TrackEvent =
   | "page_view_home"

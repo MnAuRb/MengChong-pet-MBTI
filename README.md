@@ -26,7 +26,7 @@
 | 语言 | TypeScript |
 | 样式 | Tailwind CSS v4 |
 | 动画 | Framer Motion |
-| 海报生成 | @vercel/og (Satori) |
+| 海报生成 | Canvas API（客户端合成） |
 | 数据库 | Supabase (PostgreSQL) |
 | 部署 | Vercel |
 
@@ -65,7 +65,6 @@ src/
 │   ├── share/page.tsx            # 分享海报页
 │   └── api/
 │       ├── calculate/            # MBTI 计算 API
-│       ├── generate-poster/      # 海报生成 API
 │       └── track/                # 数据埋点 API
 ├── components/
 │   ├── test/                     # 测试相关组件
@@ -79,9 +78,12 @@ src/
 │   └── results.ts                # 16 种 MBTI 人格
 ├── lib/
 │   ├── mbti-calculator.ts        # MBTI 计算逻辑
+│   ├── poster-renderer.ts        # 海报 Canvas 合成
 │   ├── analytics.ts              # 埋点工具
 │   └── supabase-server.ts        # 服务端数据库客户端
-└── types/index.ts                # TypeScript 类型定义
+├── types/index.ts                # TypeScript 类型定义
+└── public/
+    └── images/personalities/     # 16 张 MBTI 人格 IP 形象图
 ```
 
 ---

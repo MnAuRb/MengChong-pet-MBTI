@@ -1,12 +1,21 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { usePetContext } from "@/contexts/PetContext";
 import { results } from "@/data/results";
 import Link from "next/link";
 
+const PET_EMOJIS: Record<string, string> = {
+    cat: "🐱",
+    dog: "🐕",
+    other: "🐹",
+  };
+
 export default function ResultCard() {
   const { petInfo, resultType } = usePetContext();
+  const [imageError, setImageError] = useState(false);
 
   if (!resultType || !petInfo) {
     return (
@@ -38,20 +47,29 @@ export default function ResultCard() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* 3:4 图片占位框 */}
+      {/* 人格形象图 */}
       <div
-        className="relative w-full bg-warm-light rounded-card shadow-sm
-                   flex items-center justify-center overflow-hidden"
-        style={{ aspectRatio: "3 / 4" }}
+        className="relative w-full rounded-card shadow-sm overflow-hidden bg-warm-light"
+        style={{ aspectRatio: "1 / 1" }}
       >
-        <div className="flex flex-col items-center gap-2 text-center p-6">
-          <span className="text-6xl">
-            {petInfo.type === "cat" ? "🐱" : petInfo.type === "dog" ? "🐕" : "🐹"}
-          </span>
-          <p className="text-warm-400 text-sm">
-            海报预览区
-          </p>
-        </div>
+        {imageError ? (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+            <span className="text-6xl">
+              {PET_EMOJIS[petInfo.type] ?? PET_EMOJIS.other}
+            </span>
+            <p className="text-warm-400 text-sm">海报预览区</p>
+          </div>
+        ) : (
+          <Image
+            src={`/images/personalities/${result.type}.png`}
+            alt={`${result.type} ${result.nickname}`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 480px) 100vw, 480px"
+            priority
+            onError={() => setImageError(true)}
+          />
+        )}
       </div>
 
       {/* 头部：名字 + 人格类型 */}

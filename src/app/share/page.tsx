@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { usePetContext } from "@/contexts/PetContext";
+import { renderPoster } from "@/lib/poster-renderer";
 import { track } from "@/lib/analytics";
 
 type Status = "loading" | "error" | "ready";
@@ -31,23 +32,9 @@ export default function SharePage() {
         const info = petInfo!;
         const type = resultType!;
 
-        const res = await fetch("/api/generate-poster", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            mbtiType: type,
-            petName: info.name,
-          }),
-        });
-
-        if (!res.ok) {
-          const err = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
-          throw new Error(err.error ?? `请求失败 (${res.status})`);
-        }
-
-        const blob = await res.blob();
-        const url = URL.createObjectURL(blob);
-        setPosterUrl(url);
+        // 客户端 Canvas 合成海报，无需服务端请求
+        const dataUrl = await renderPoster(type, info.name);
+        setPosterUrl(dataUrl);
         setStatus("ready");
         track("share_completed", {
           pet_type: info.type,
@@ -126,7 +113,9 @@ export default function SharePage() {
 
       <Link
         href="/result"
-        className="text-center text-sm text-warm font-medium underline py-3 min-h-[44px] flex items-center justify-center"
+        className="bg-white hover:bg-warm-light text-warm font-bold
+                   py-3 px-8 rounded-button w-full text-center
+                   border-2 border-warm transition-colors"
       >
         ← 返回结果页
       </Link>
