@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import { usePetContext } from "@/contexts/PetContext";
 import PetInfoForm from "@/components/test/PetInfoForm";
 import QuestionCard from "@/components/test/QuestionCard";
-import { questions } from "@/data/questions";
+import { questions as dogQuestions, catQuestions } from "@/data/questions";
 import { track } from "@/lib/analytics";
-import type { Pole, Answer } from "@/types";
+import type { LikertValue, Answer } from "@/types";
 
 type Step = "info" | "quiz";
 
@@ -20,6 +20,11 @@ export default function TestPage() {
   const testStartedRef = useRef(false);
   const testCompletedRef = useRef(false);
 
+  // 根据宠物类型选择题目：猫用25题，狗/其他用20题
+  const quizQuestions =
+    petInfo?.type === "cat" ? catQuestions : dogQuestions;
+  const totalCount = quizQuestions.length;
+
   function handleInfoNext() {
     setStep("quiz");
   }
@@ -31,16 +36,16 @@ export default function TestPage() {
     }
   }, [step, petInfo?.type]);
 
-  function handleAnswer(pole: Pole) {
+  function handleAnswer(value: LikertValue) {
     const answer: Answer = {
-      questionId: questions[currentIndex].id,
-      selectedPole: pole,
+      questionId: quizQuestions[currentIndex].id,
+      value,
     };
 
     const nextAnswers = [...localAnswers, answer];
     setLocalAnswers(nextAnswers);
 
-    if (currentIndex < questions.length - 1) {
+    if (currentIndex < totalCount - 1) {
       setCurrentIndex(currentIndex + 1);
     } else if (!testCompletedRef.current) {
       testCompletedRef.current = true;
@@ -59,15 +64,21 @@ export default function TestPage() {
     }
   }
 
+  // 当前题目是否已有答案（回退时恢复选择状态）
+  const currentAnswer = localAnswers.find(
+    (a) => a.questionId === quizQuestions[currentIndex]?.id
+  );
+
   return (
     <div className="flex flex-col flex-1 px-6 py-8">
       {step === "info" && <PetInfoForm onNext={handleInfoNext} />}
 
       {step === "quiz" && (
         <QuestionCard
-          question={questions[currentIndex]}
+          question={quizQuestions[currentIndex]}
           currentIndex={currentIndex}
-          totalCount={questions.length}
+          totalCount={totalCount}
+          selectedValue={currentAnswer?.value}
           onAnswer={handleAnswer}
           onBack={handleBack}
         />

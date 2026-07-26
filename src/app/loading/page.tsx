@@ -11,7 +11,8 @@ const MIN_DISPLAY_MS = 2500; // 最少展示 2.5 秒
 
 export default function LoadingPage() {
   const router = useRouter();
-  const { answers, setResultType } = usePetContext();
+  const { petInfo, answers, setResultType, setDimensionScores } =
+    usePetContext();
   const calledRef = useRef(false);
   const mountTimeRef = useRef(0);
 
@@ -37,11 +38,21 @@ export default function LoadingPage() {
           }
         }
 
-        if (!finalAnswers || finalAnswers.length !== 20) {
+        if (!finalAnswers || finalAnswers.length === 0) {
           throw new Error("答题数据不完整，请重新测试");
         }
 
-        const body: CalculateRequest = { answers: finalAnswers };
+        const expectedCount = petInfo?.type === "cat" ? 25 : 20;
+        if (finalAnswers.length !== expectedCount) {
+          throw new Error(
+            `答题数据不完整（需要${expectedCount}题，收到${finalAnswers.length}题），请重新测试`
+          );
+        }
+
+        const body: CalculateRequest = {
+          answers: finalAnswers,
+          petType: petInfo?.type,
+        };
         const res = await fetch("/api/calculate", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -62,6 +73,7 @@ export default function LoadingPage() {
         }
 
         setResultType(data.type);
+        setDimensionScores(data.scores);
         sessionStorage.removeItem("mbti_answers");
         router.push("/result");
       } catch {
@@ -72,7 +84,7 @@ export default function LoadingPage() {
 
     // 立即开始计算，但用 Promise 保证最短展示时间
     calculate();
-  }, [answers, router, setResultType]);
+  }, [answers, router, setResultType, setDimensionScores, petInfo?.type]);
 
   return (
     <div className="flex flex-col flex-1 items-center justify-center px-6 gap-8">
