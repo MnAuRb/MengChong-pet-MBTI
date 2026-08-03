@@ -1,10 +1,11 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import type { Question, LikertValue } from "@/types";
+import { usePetContext } from "@/contexts/PetContext";
+import type { Question, LikertValue, DogLikertValue } from "@/types";
 import ProgressBar from "./ProgressBar";
 
-const LIKERT_OPTIONS: { value: LikertValue; label: string; emoji: string }[] = [
+const CAT_LIKERT_OPTIONS: { value: number; label: string; emoji: string }[] = [
   { value: 1, label: "完全不符合", emoji: "😤" },
   { value: 2, label: "不太符合", emoji: "🤔" },
   { value: 3, label: "有时符合", emoji: "😐" },
@@ -12,12 +13,20 @@ const LIKERT_OPTIONS: { value: LikertValue; label: string; emoji: string }[] = [
   { value: 5, label: "完全符合", emoji: "💕" },
 ];
 
+const DOG_LIKERT_OPTIONS: { value: number; label: string; emoji: string }[] = [
+  { value: 0, label: "从不", emoji: "🚫" },
+  { value: 1, label: "很少", emoji: "🤔" },
+  { value: 2, label: "有时", emoji: "😐" },
+  { value: 3, label: "经常", emoji: "😊" },
+  { value: 4, label: "总是", emoji: "💕" },
+];
+
 interface Props {
   question: Question;
   currentIndex: number;
   totalCount: number;
-  selectedValue?: LikertValue;
-  onAnswer: (value: LikertValue) => void;
+  selectedValue?: number;
+  onAnswer: (value: number) => void;
   onBack?: () => void;
 }
 
@@ -29,6 +38,9 @@ export default function QuestionCard({
   onAnswer,
   onBack,
 }: Props) {
+  const { petInfo } = usePetContext();
+  const options = petInfo?.type === "cat" ? CAT_LIKERT_OPTIONS : DOG_LIKERT_OPTIONS;
+
   return (
     <div className="flex flex-col gap-6 w-full">
       {/* 进度条 */}
@@ -56,9 +68,9 @@ export default function QuestionCard({
             </p>
           </div>
 
-          {/* Likert 5 级选项 */}
+          {/* Likert 选项：猫 1-5 / 狗 0-4 */}
           <div className="flex flex-col gap-2.5">
-            {LIKERT_OPTIONS.map((opt) => {
+            {options.map((opt) => {
               const isSelected = selectedValue === opt.value;
               return (
                 <motion.button

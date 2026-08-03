@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
-import { calculateMBTI } from "@/lib/mbti-calculator";
+import { calculateDogMBTI } from "@/lib/dog-calculator";
 import { calculateCatMBTI } from "@/lib/cat-calculator";
 import type { CalculateRequest, CalculateResponse } from "@/types";
-
-const VALID_VALUES = [1, 2, 3, 4, 5] as const;
 
 export async function POST(request: Request): Promise<Response> {
   try {
@@ -14,7 +12,7 @@ export async function POST(request: Request): Promise<Response> {
       return NextResponse.json({ error: "缺少 answers 字段" }, { status: 400 });
     }
 
-    const expectedCount = petType === "cat" ? 25 : 20;
+    const expectedCount = 25; // Both cat and dog use 25 questions
     if (body.answers.length !== expectedCount) {
       return NextResponse.json(
         { error: `需要 ${expectedCount} 道题答案，收到 ${body.answers.length} 道` },
@@ -22,7 +20,11 @@ export async function POST(request: Request): Promise<Response> {
       );
     }
 
-    const maxQuestionId = petType === "cat" ? 48 : 20;
+    const maxQuestionId = petType === "cat" ? 48 : 100;
+    const validValues =
+      petType === "cat"
+        ? ([1, 2, 3, 4, 5] as const)
+        : ([0, 1, 2, 3, 4] as const);
 
     // 校验每条答案结构
     for (let i = 0; i < body.answers.length; i++) {
@@ -37,9 +39,9 @@ export async function POST(request: Request): Promise<Response> {
           { status: 400 }
         );
       }
-      if (typeof a.value !== "number" || !VALID_VALUES.includes(a.value)) {
+      if (typeof a.value !== "number" || !(validValues as readonly number[]).includes(a.value)) {
         return NextResponse.json(
-          { error: `第 ${i + 1} 条答案 value 无效: ${a.value}，需为 1-5` },
+          { error: `第 ${i + 1} 条答案 value 无效: ${a.value}，需为 ${petType === "cat" ? "1-5" : "0-4"}` },
           { status: 400 }
         );
       }
@@ -48,7 +50,7 @@ export async function POST(request: Request): Promise<Response> {
     const result =
       petType === "cat"
         ? calculateCatMBTI(body.answers)
-        : calculateMBTI(body.answers);
+        : calculateDogMBTI(body.answers);
 
     const response: CalculateResponse = {
       type: result.type,

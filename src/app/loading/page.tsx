@@ -42,7 +42,7 @@ export default function LoadingPage() {
           throw new Error("答题数据不完整，请重新测试");
         }
 
-        const expectedCount = petInfo?.type === "cat" ? 25 : 20;
+        const expectedCount = 25; // Both cat and dog use 25 questions
         if (finalAnswers.length !== expectedCount) {
           throw new Error(
             `答题数据不完整（需要${expectedCount}题，收到${finalAnswers.length}题），请重新测试`

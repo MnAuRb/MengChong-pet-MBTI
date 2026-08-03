@@ -7,7 +7,7 @@ import PetInfoForm from "@/components/test/PetInfoForm";
 import QuestionCard from "@/components/test/QuestionCard";
 import { questions as dogQuestions, catQuestions } from "@/data/questions";
 import { track } from "@/lib/analytics";
-import type { LikertValue, Answer } from "@/types";
+import type { Answer } from "@/types";
 
 type Step = "info" | "quiz";
 
@@ -36,7 +36,7 @@ export default function TestPage() {
     }
   }, [step, petInfo?.type]);
 
-  function handleAnswer(value: LikertValue) {
+  function handleAnswer(value: number) {
     const answer: Answer = {
       questionId: quizQuestions[currentIndex].id,
       value,

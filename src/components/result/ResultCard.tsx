@@ -4,9 +4,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { usePetContext } from "@/contexts/PetContext";
-import { results as dogResults } from "@/data/results";
+import { dogResults } from "@/data/dog-results";
 import { catResults } from "@/data/cat-results";
-import { FIRST_POLES, SECOND_POLES } from "@/lib/mbti-calculator";
+import { FIRST_POLES, SECOND_POLES } from "@/lib/mbti-utils";
 import Link from "next/link";
 import type { Dimension, DimensionScore } from "@/types";
 

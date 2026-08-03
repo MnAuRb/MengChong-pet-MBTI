@@ -1,0 +1,227 @@
+[
+  {
+    "id": 10,
+    "cbarqFactor": "F1",
+    "mbtiDimension": "EI",
+    "textZh": "拴着牵引绳在外面走时，有不认识的成年人直接靠近它，它会表现出攻击性（低吼、龇牙、扑咬）",
+    "loading": 0.799,
+    "pole": "I",
+    "direction": "+"
+  },
+  {
+    "id": 21,
+    "cbarqFactor": "F1",
+    "mbtiDimension": "EI",
+    "textZh": "有陌生人试图摸它或抱它时，它会表现出攻击性（低吼、龇牙、咬人）",
+    "loading": 0.780,
+    "pole": "I",
+    "direction": "+"
+  },
+  {
+    "id": 28,
+    "cbarqFactor": "F1",
+    "mbtiDimension": "EI",
+    "textZh": "有不认识的人来家里做客时，它会表现出攻击性（低吼、龇牙、扑咬）",
+    "loading": 0.691,
+    "pole": "I",
+    "direction": "+"
+  },
+  {
+    "id": 45,
+    "cbarqFactor": "F2",
+    "mbtiDimension": "EI",
+    "textZh": "在外面遇到体型和自己差不多大或更大的陌生狗直接靠近时，它会表现出害怕或焦虑（躲闪、夹尾巴、发抖）",
+    "loading": 0.824,
+    "pole": "I",
+    "direction": "+"
+  },
+  {
+    "id": 52,
+    "cbarqFactor": "F2",
+    "mbtiDimension": "EI",
+    "textZh": "有陌生的狗来家里做客时，它会表现出害怕或焦虑（躲在一边、不敢靠近）",
+    "loading": 0.755,
+    "pole": "I",
+    "direction": "+"
+  },
+  {
+    "id": 23,
+    "cbarqFactor": "F6",
+    "mbtiDimension": "EI",
+    "textZh": "拴着牵引绳在外面走时，有不认识的公狗直接靠近它，它会表现出攻击性（低吼、龇牙、冲上去）",
+    "loading": 0.601,
+    "pole": "E",
+    "direction": "+"
+  },
+  {
+    "id": 29,
+    "cbarqFactor": "F6",
+    "mbtiDimension": "EI",
+    "textZh": "有陌生狗对它叫、低吼或冲过来时，它会直接回击而不是退缩",
+    "loading": 0.557,
+    "pole": "E",
+    "direction": "+"
+  },
+  {
+    "id": 1,
+    "cbarqFactor": "F8",
+    "mbtiDimension": "SN",
+    "textZh": "在外面不拴绳的时候，你一叫它就立刻回来",
+    "loading": 0.640,
+    "pole": "N",
+    "direction": "+"
+  },
+  {
+    "id": 6,
+    "cbarqFactor": "F8",
+    "mbtiDimension": "SN",
+    "textZh": "教它新指令或新把戏时，它学得很慢，需要重复很多次才能学会",
+    "loading": 0.450,
+    "pole": "N",
+    "direction": "-"
+  },
+  {
+    "id": 94,
+    "cbarqFactor": "N_TYPE",
+    "mbtiDimension": "SN",
+    "textZh": "它有时会突然对着空气扑抓、追着看不见的东西跑，好像在抓不存在的飞虫",
+    "loading": 1.0,
+    "pole": "N",
+    "direction": "+"
+  },
+  {
+    "id": 74,
+    "cbarqFactor": "F5",
+    "mbtiDimension": "SN",
+    "textZh": "看到松鼠、兔子、猫等小动物时，它会立刻冲过去追（如果有机会的话）",
+    "loading": 0.895,
+    "pole": "S",
+    "direction": "+"
+  },
+  {
+    "id": 75,
+    "cbarqFactor": "F5",
+    "mbtiDimension": "SN",
+    "textZh": "看到鸟或飞过的昆虫时，它会追上去（如果有机会的话）",
+    "loading": 0.731,
+    "pole": "S",
+    "direction": "+"
+  },
+  {
+    "id": 38,
+    "cbarqFactor": "F10",
+    "mbtiDimension": "SN",
+    "textZh": "听到突然的巨响或奇怪噪音（吸尘器、打雷、装修声、东西掉落等）时，它会明显表现出害怕或焦虑",
+    "loading": 0.510,
+    "pole": "S",
+    "direction": "+"
+  },
+  {
+    "id": 70,
+    "cbarqFactor": "F7",
+    "mbtiDimension": "TF",
+    "textZh": "你坐着的时候，它会主动靠过来贴着你的身体坐，或者直接趴在你身上",
+    "loading": 0.617,
+    "pole": "F",
+    "direction": "+"
+  },
+  {
+    "id": 69,
+    "cbarqFactor": "F7",
+    "mbtiDimension": "TF",
+    "textZh": "你在家走动时，它会跟着你从一个房间走到另一个房间，像个跟屁虫",
+    "loading": 0.608,
+    "pole": "F",
+    "direction": "+"
+  },
+  {
+    "id": 49,
+    "cbarqFactor": "F13",
+    "mbtiDimension": "TF",
+    "textZh": "你或家人给它剪指甲时，它会表现出害怕或抗拒（躲闪、挣扎、低吼）",
+    "loading": 0.609,
+    "pole": "F",
+    "direction": "+"
+  },
+  {
+    "id": 50,
+    "cbarqFactor": "F13",
+    "mbtiDimension": "TF",
+    "textZh": "你或家人给它洗澡或梳毛时，它会表现出害怕或抗拒（躲闪、挣扎、想逃跑）",
+    "loading": 0.562,
+    "pole": "F",
+    "direction": "+"
+  },
+  {
+    "id": 19,
+    "cbarqFactor": "F3",
+    "mbtiDimension": "TF",
+    "textZh": "你或家人拿走它正在吃的食物时，它会表现出攻击性（低吼、龇牙、护食）",
+    "loading": 0.747,
+    "pole": "T",
+    "direction": "+"
+  },
+  {
+    "id": 13,
+    "cbarqFactor": "F3",
+    "mbtiDimension": "TF",
+    "textZh": "你或家人拿走它的玩具或骨头时，它会表现出攻击性（低吼、龇牙、咬人）",
+    "loading": 0.631,
+    "pole": "T",
+    "direction": "+"
+  },
+  {
+    "id": 65,
+    "cbarqFactor": "F11",
+    "mbtiDimension": "JP",
+    "textZh": "在你准备带它出门散步之前（拿牵引绳、换鞋等动作），它会变得异常兴奋、上蹿下跳",
+    "loading": 0.661,
+    "pole": "P",
+    "direction": "+"
+  },
+  {
+    "id": 67,
+    "cbarqFactor": "F11",
+    "mbtiDimension": "JP",
+    "textZh": "有人来家里做客或门铃响时，它会异常兴奋、又叫又跳",
+    "loading": 0.431,
+    "pole": "P",
+    "direction": "+"
+  },
+  {
+    "id": 56,
+    "cbarqFactor": "F4",
+    "mbtiDimension": "JP",
+    "textZh": "你准备出门把它独自留在家时，它会变得焦躁不安，不停地走来走去",
+    "loading": 0.657,
+    "pole": "J",
+    "direction": "+"
+  },
+  {
+    "id": 57,
+    "cbarqFactor": "F4",
+    "mbtiDimension": "JP",
+    "textZh": "你准备出门把它独自留在家时，它会发出呜呜的哀叫声",
+    "loading": 0.653,
+    "pole": "J",
+    "direction": "+"
+  },
+  {
+    "id": 58,
+    "cbarqFactor": "F4",
+    "mbtiDimension": "JP",
+    "textZh": "你准备出门把它独自留在家时，它会不停地叫",
+    "loading": 0.578,
+    "pole": "J",
+    "direction": "+"
+  },
+  {
+    "id": 88,
+    "cbarqFactor": "F12",
+    "mbtiDimension": "JP",
+    "textZh": "它被独自留在家时，会在家里乱尿（不是没学会定点，而是分离导致的）",
+    "loading": 0.875,
+    "pole": "J",
+    "direction": "+"
+  }
+]

@@ -1,13 +1,16 @@
 // ===== 宠物信息 =====
 export interface PetInfo {
   name: string;
-  type: "cat" | "dog" | "other";
-  age?: string;
+  type: "cat" | "dog";
+  breed: string;
 }
 
 // ===== Likert 量表 =====
 /** 5-point Likert：1=完全不符合, 2=不太符合, 3=有时符合, 4=比较符合, 5=完全符合 */
 export type LikertValue = 1 | 2 | 3 | 4 | 5;
+
+/** C-BARQ 0-4 frequency scale for dogs: 0=从不, 1=很少, 2=有时, 3=经常, 4=总是 */
+export type DogLikertValue = 0 | 1 | 2 | 3 | 4;
 
 // ===== 测试题 =====
 export type Dimension = "EI" | "SN" | "TF" | "JP";
@@ -27,8 +30,8 @@ export interface Question {
 // ===== 用户答案 =====
 export interface Answer {
   questionId: number;
-  /** 1-5 Likert 值 */
-  value: LikertValue;
+  /** Likert 值：猫=1-5，狗=0-4 */
+  value: number;
 }
 
 // ===== MBTI 结果 =====
@@ -71,7 +74,7 @@ export interface DimensionScore {
 // ===== API 请求/响应 =====
 export interface CalculateRequest {
   answers: Answer[];
-  petType?: "cat" | "dog" | "other";
+  petType?: "cat" | "dog";
 }
 
 export interface CalculateResponse {
@@ -93,7 +96,7 @@ export type TrackEvent =
 export interface TrackPayload {
   event: TrackEvent;
   session_id: string;
-  pet_type?: "cat" | "dog" | "other";
+  pet_type?: "cat" | "dog";
   mbti_type?: string;
   screen_size?: string;
 }

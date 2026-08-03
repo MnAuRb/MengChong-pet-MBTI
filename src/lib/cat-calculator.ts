@@ -23,7 +23,7 @@ import { getItemsForVersion } from "@/lib/cat-quiz/items";
 import { calculateAllDimensionScores } from "@/lib/cat-quiz/scoring";
 import { mapScoresToMbti } from "@/lib/cat-quiz/mbti-mapper";
 import type { MbtiDimensionResult } from "@/lib/cat-quiz/types";
-import { getPreferenceStrength, getPoleLabel } from "./mbti-calculator";
+import { getPreferenceStrength, getPoleLabel } from "./mbti-utils";
 
 // ─── Dimension Key Mapping ──────────────────────────────────────────
 
