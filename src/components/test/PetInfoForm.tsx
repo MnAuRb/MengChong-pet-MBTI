@@ -2,52 +2,12 @@
 
 import { useState, useRef, useEffect, type KeyboardEvent } from "react";
 import { usePetContext } from "@/contexts/PetContext";
+import { CAT_BREEDS, DOG_BREEDS } from "@/data/breeds";
 import type { PetInfo } from "@/types";
 
 const PET_TYPES = [
   { value: "cat" as const, label: "🐱 猫", emoji: "🐱" },
   { value: "dog" as const, label: "🐕 狗", emoji: "🐕" },
-];
-
-// 品种数据
-const CAT_BREEDS = [
-  "阿比西尼亚",
-  "波斯猫",
-  "布偶猫",
-  "德文卷毛",
-  "黑猫",
-  "加菲猫",
-  "金渐层",
-  "橘猫",
-  "蓝猫",
-  "美短",
-  "缅因猫",
-  "奶牛猫",
-  "暹罗猫",
-  "三花猫",
-  "银渐层",
-  "英短",
-  "中华田园猫",
-];
-
-const DOG_BREEDS = [
-  "阿拉斯加",
-  "比熊",
-  "边牧",
-  "博美",
-  "柴犬",
-  "德牧",
-  "法斗",
-  "哈士奇",
-  "吉娃娃",
-  "金毛",
-  "柯基",
-  "拉布拉多",
-  "萨摩耶",
-  "泰迪/贵宾",
-  "雪纳瑞",
-  "约克夏",
-  "中华田园犬",
 ];
 
 interface Props {
@@ -75,11 +35,11 @@ export default function PetInfoForm({ onNext }: Props) {
     setHighlightIdx(-1);
   }
 
-  // 获取当前类型的品种列表
+  // 获取当前类型的品种列表（仅中文名，用于显示和搜索）
   function getBreeds(): string[] {
     switch (petType) {
-      case "cat": return CAT_BREEDS;
-      case "dog": return DOG_BREEDS;
+      case "cat": return CAT_BREEDS.map((b) => b.name);
+      case "dog": return DOG_BREEDS.map((b) => b.name);
       default: return [];
     }
   }

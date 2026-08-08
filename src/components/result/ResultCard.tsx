@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePetContext } from "@/contexts/PetContext";
 import { dogResults } from "@/data/dog-results";
 import { catResults } from "@/data/cat-results";
+import { getBreedSlug, getBreedImagePath } from "@/lib/breed-image";
 import { FIRST_POLES, SECOND_POLES } from "@/lib/mbti-utils";
 import Link from "next/link";
 import type { Dimension, DimensionScore } from "@/types";
@@ -75,6 +76,12 @@ export default function ResultCard() {
     ? (Object.entries(dimensionScores) as [Dimension, DimensionScore][])
     : [];
 
+  // 品种图片路径
+  const breedSlug = getBreedSlug(petInfo.breed, petInfo.type);
+  const imagePath = breedSlug
+    ? getBreedImagePath(breedSlug, result.type, petInfo.type)
+    : null;
+
   return (
     <motion.div
       className="flex flex-col gap-5 w-full"
@@ -82,22 +89,15 @@ export default function ResultCard() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* 人格形象图 */}
+      {/* 品种人格形象图 */}
       <div
         className="relative w-full rounded-card shadow-sm overflow-hidden bg-warm-light"
         style={{ aspectRatio: "1 / 1" }}
       >
-        {imageError ? (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-            <span className="text-6xl">
-              {PET_EMOJIS[petInfo.type] ?? PET_EMOJIS.other}
-            </span>
-            <p className="text-warm-400 text-sm">海报预览区</p>
-          </div>
-        ) : (
+        {imagePath && !imageError ? (
           <Image
-            src={`/images/personalities/${result.type}.png`}
-            alt={`${result.type} ${result.nickname}`}
+            src={imagePath}
+            alt={`${petInfo.breed} ${result.type} ${result.nickname}`}
             fill
             className="object-cover"
             sizes="(max-width: 480px) 100vw, 480px"
@@ -105,6 +105,13 @@ export default function ResultCard() {
             unoptimized
             onError={() => setImageError(true)}
           />
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+            <span className="text-6xl">
+              {PET_EMOJIS[petInfo.type] ?? PET_EMOJIS.other}
+            </span>
+            <p className="text-warm-400 text-sm">品种形象加载中</p>
+          </div>
         )}
       </div>
 

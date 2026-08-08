@@ -1,5 +1,4 @@
-import { results } from "@/data/results";
-import type { MBTIType } from "@/types";
+import type { MBTIResult, MBTIType } from "@/types";
 
 // 16 种 MBTI 海报配色 — 温馨暖色调
 const TYPE_COLORS: Record<string, { bg: string; accent: string }> = {
@@ -119,10 +118,11 @@ function drawWrappedText(
  */
 export async function renderPoster(
   mbtiType: MBTIType,
-  petName: string
+  petName: string,
+  breedSlug: string | null,
+  petType: "cat" | "dog",
+  result: MBTIResult,
 ): Promise<string> {
-  const result = results[mbtiType];
-  if (!result) throw new Error(`未知的 MBTI 类型: ${mbtiType}`);
 
   const colors = TYPE_COLORS[mbtiType] ?? { bg: "#FFF5F0", accent: "#E8734A" };
 
@@ -157,18 +157,40 @@ export async function renderPoster(
   ctx.textBaseline = "top";
   ctx.fillText("🐾 萌宠MBTI", 60, 60);
 
-  // ---- 4. 人格形象图（320px 圆形） ----
-  const imgSrc = `/images/personalities/${mbtiType}.png`;
-  const img = await loadImage(imgSrc);
+  // ---- 4. 品种人格形象图（320px 圆形） ----
   const imgSize = 320;
   const imgX = (CANVAS_W - imgSize) / 2;
   const imgY = 120;
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(imgX + imgSize / 2, imgY + imgSize / 2, imgSize / 2, 0, Math.PI * 2);
-  ctx.clip();
-  ctx.drawImage(img, imgX, imgY, imgSize, imgSize);
-  ctx.restore();
+
+  if (breedSlug) {
+    const imgSrc = `/images/breeds/${petType}/${breedSlug}/${mbtiType}.png`;
+    try {
+      const img = await loadImage(imgSrc);
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(imgX + imgSize / 2, imgY + imgSize / 2, imgSize / 2, 0, Math.PI * 2);
+      ctx.clip();
+      ctx.drawImage(img, imgX, imgY, imgSize, imgSize);
+      ctx.restore();
+    } catch {
+      // 品种图加载失败，绘制 Emoji 占位
+      ctx.font = `120px ${FONT_FAMILY}`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(petType === "cat" ? "🐱" : "🐕", imgX + imgSize / 2, imgY + imgSize / 2);
+      ctx.textAlign = "left";
+      ctx.textBaseline = "top";
+    }
+  } else {
+    // 无品种 slug，绘制 Emoji 占位
+    ctx.font = `120px ${FONT_FAMILY}`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(petType === "cat" ? "🐱" : "🐕", imgX + imgSize / 2, imgY + imgSize / 2);
+    ctx.textAlign = "left";
+    ctx.textBaseline = "top";
+  }
+
   // 圆形描边
   ctx.strokeStyle = `${colors.accent}55`;
   ctx.lineWidth = 4;

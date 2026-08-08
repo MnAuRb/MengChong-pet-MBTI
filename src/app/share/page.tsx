@@ -4,7 +4,11 @@ import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { usePetContext } from "@/contexts/PetContext";
 import { renderPoster } from "@/lib/poster-renderer";
+import { getBreedSlug } from "@/lib/breed-image";
+import { dogResults } from "@/data/dog-results";
+import { catResults } from "@/data/cat-results";
 import { track } from "@/lib/analytics";
+import type { MBTIResult } from "@/types";
 
 type Status = "loading" | "error" | "ready";
 
@@ -33,7 +37,13 @@ export default function SharePage() {
         const type = resultType!;
 
         // 客户端 Canvas 合成海报，无需服务端请求
-        const dataUrl = await renderPoster(type, info.name);
+        const breedSlug = getBreedSlug(info.breed, info.type);
+        const resultsMap: Record<string, MBTIResult> =
+          info.type === "cat" ? catResults : dogResults;
+        const result = resultsMap[type];
+        if (!result) throw new Error(`未知的 MBTI 类型: ${type}`);
+
+        const dataUrl = await renderPoster(type, info.name, breedSlug, info.type, result);
         setPosterUrl(dataUrl);
         setStatus("ready");
         track("share_completed", {
