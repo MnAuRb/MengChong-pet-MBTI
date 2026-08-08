@@ -70,18 +70,24 @@ export default function TestPage() {
   );
 
   return (
-    <div className="flex flex-col flex-1 px-6 py-8">
-      {step === "info" && <PetInfoForm onNext={handleInfoNext} />}
+    <div className="flex flex-col flex-1 px-6 py-8 lg:items-center">
+      {step === "info" && (
+        <div className="w-full lg:max-w-xl">
+          <PetInfoForm onNext={handleInfoNext} />
+        </div>
+      )}
 
       {step === "quiz" && (
-        <QuestionCard
-          question={quizQuestions[currentIndex]}
-          currentIndex={currentIndex}
-          totalCount={totalCount}
-          selectedValue={currentAnswer?.value}
-          onAnswer={handleAnswer}
-          onBack={handleBack}
-        />
+        <div className="w-full lg:max-w-2xl">
+          <QuestionCard
+            question={quizQuestions[currentIndex]}
+            currentIndex={currentIndex}
+            totalCount={totalCount}
+            selectedValue={currentAnswer?.value}
+            onAnswer={handleAnswer}
+            onBack={handleBack}
+          />
+        </div>
       )}
     </div>
   );

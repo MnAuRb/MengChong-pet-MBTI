@@ -61,15 +61,19 @@ export default function SharePage() {
   }, [missing]);
 
   return (
-    <div className="flex flex-col flex-1 px-6 py-8 gap-5">
-      <div className="text-center">
+    <div className="flex flex-col flex-1 px-6 py-8 gap-5
+                    lg:grid lg:grid-cols-[auto_1fr] lg:gap-10 lg:items-start lg:px-12 lg:py-10">
+
+      {/* 标题 — 手机显示在顶部，桌面端移到右栏 */}
+      <div className="text-center lg:hidden">
         <h2 className="text-xl font-bold text-warm-dark">分享你的毛孩子</h2>
         <p className="text-sm text-warm-500 mt-1">
           长按图片保存到相册，分享给朋友
         </p>
       </div>
 
-      <div className="flex-1 flex items-center justify-center">
+      {/* 左栏：海报区域 */}
+      <div className="flex-1 flex items-center justify-center lg:flex-initial">
         {missing ? (
           <div className="flex flex-col items-center gap-4 text-center">
             <p className="text-red-500 text-sm">请先完成测试</p>
@@ -110,25 +114,47 @@ export default function SharePage() {
         ) : null}
       </div>
 
-      {status === "ready" && (
-        <div className="bg-warm-light rounded-card px-4 py-3 text-center">
-          <p className="text-sm font-medium text-warm-700">
-            👆 长按上方海报图片 → 保存到相册
-          </p>
-          <p className="text-xs text-warm-500 mt-1">
-            然后分享到朋友圈、小红书或发给朋友！
+      {/* 右栏：说明信息（桌面端显示） */}
+      <div className="flex flex-col gap-5 lg:gap-6">
+        {/* 标题 — 仅桌面端显示 */}
+        <div className="hidden lg:block">
+          <h2 className="text-xl font-bold text-warm-dark">分享你的毛孩子</h2>
+          <p className="text-sm text-warm-500 mt-1">
+            长按图片保存到相册，分享给朋友
           </p>
         </div>
-      )}
 
-      <Link
-        href="/result"
-        className="bg-white hover:bg-warm-light text-warm font-bold
-                   py-3 px-8 rounded-button w-full text-center
-                   border-2 border-warm transition-colors"
-      >
-        ← 返回结果页
-      </Link>
+        {/* 保存提示 */}
+        {status === "ready" && (
+          <div className="bg-warm-light rounded-card px-4 py-3 text-center lg:text-left">
+            <p className="text-sm font-medium text-warm-700">
+              👆 长按上方海报图片 → 保存到相册
+            </p>
+            <p className="text-xs text-warm-500 mt-1">
+              然后分享到朋友圈、小红书或发给朋友！
+            </p>
+          </div>
+        )}
+
+        {/* 分享步骤引导 — 桌面端显示 */}
+        <div className="hidden lg:flex lg:flex-col lg:gap-2">
+          <p className="text-sm font-medium text-warm-dark">📋 如何分享？</p>
+          <ol className="text-sm text-warm-500 space-y-1 list-decimal list-inside">
+            <li>长按左侧海报保存到相册</li>
+            <li>打开微信朋友圈或小红书</li>
+            <li>选择图片发布，秀出你家毛孩子！</li>
+          </ol>
+        </div>
+
+        <Link
+          href="/result"
+          className="bg-white hover:bg-warm-light text-warm font-bold
+                     py-3 px-8 rounded-button w-full text-center
+                     border-2 border-warm transition-colors lg:w-auto lg:self-start"
+        >
+          ← 返回结果页
+        </Link>
+      </div>
     </div>
   );
 }

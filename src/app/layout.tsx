@@ -29,8 +29,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN" className="h-full antialiased">
-      <body className="min-h-full flex flex-col max-w-md mx-auto bg-background text-foreground">
+    <html lang="zh-CN" className="h-full antialiased bg-background">
+      <body className="min-h-full flex flex-col mx-auto bg-background text-foreground sm:max-w-2xl lg:max-w-6xl">
         <ClientLayout>{children}</ClientLayout>
         <Analytics />
       </body>

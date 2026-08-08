@@ -11,7 +11,7 @@ export default function ResultPage() {
 
   return (
     <div className="flex flex-col flex-1 overflow-y-auto">
-      <div className="flex flex-col px-6 py-8 gap-6">
+      <div className="flex flex-col px-6 py-8 gap-6 lg:px-12 lg:py-10">
         <TrackPageView event="page_view_result" />
 
         {/* 可滚动结果卡片 */}
@@ -19,7 +19,7 @@ export default function ResultPage() {
 
         {/* 操作按钮 */}
         {resultType && (
-          <div className="flex flex-col gap-3 pb-8">
+          <div className="flex flex-col gap-3 pb-8 sm:flex-row sm:gap-4 lg:max-w-xl lg:mx-auto lg:w-full">
             <Link
               href="/share"
               onClick={() =>
@@ -29,7 +29,7 @@ export default function ResultPage() {
                 })
               }
               className="bg-warm hover:bg-warm-600 text-white font-bold
-                         py-4 px-8 rounded-button w-full text-center text-lg
+                         py-4 px-8 rounded-button w-full sm:flex-1 text-center text-lg
                          transition-colors shadow-lg shadow-warm/25"
             >
               📤 生成分享海报
@@ -39,7 +39,7 @@ export default function ResultPage() {
               href="/"
               onClick={() => track("click_retest")}
               className="bg-white hover:bg-warm-light text-warm font-bold
-                         py-3 px-8 rounded-button w-full text-center
+                         py-3 px-8 rounded-button w-full sm:flex-1 text-center
                          border-2 border-warm transition-colors"
             >
               🔄 再测一次
