@@ -38,7 +38,8 @@ export default function ResultPage() {
               href="/"
               onClick={() => track("click_retest")}
               className="rounded-full border-2 border-brand-primary text-brand-primary
-                         hover:bg-brand-surface-alt text-sm font-medium
+                         hover:bg-brand-primary/25 hover:border-brand-text hover:text-brand-text
+                         text-sm font-medium
                          py-3 px-8 w-full sm:flex-1 text-center
                          transition-colors"
             >

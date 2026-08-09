@@ -6,8 +6,8 @@ import { CAT_BREEDS, DOG_BREEDS } from "@/data/breeds";
 import type { PetInfo } from "@/types";
 
 const PET_TYPES = [
-  { value: "cat" as const, label: "🐱 猫", emoji: "🐱" },
-  { value: "dog" as const, label: "🐕 狗", emoji: "🐕" },
+  { value: "cat" as const, label: "咪咪", emoji: "🐱" },
+  { value: "dog" as const, label: "汪汪", emoji: "🐕" },
 ];
 
 interface Props {
@@ -173,7 +173,7 @@ export default function PetInfoForm({ onNext }: Props) {
       {petType && (
         <div className="flex flex-col gap-2">
           <span className="text-sm font-normal text-brand-muted">
-            品种
+            品种（按首字母排序）
           </span>
 
           {breed ? (
@@ -190,13 +190,6 @@ export default function PetInfoForm({ onNext }: Props) {
                   ✕
                 </button>
               </span>
-              <button
-                type="button"
-                onClick={() => { setShowDropdown(true); inputRef.current?.focus(); }}
-                className="text-sm text-brand-muted hover:text-brand-text underline underline-offset-4 transition-colors"
-              >
-                更换
-              </button>
             </div>
           ) : (
             <div ref={dropdownRef} className="relative">

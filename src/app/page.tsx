@@ -1,5 +1,6 @@
 import Link from "next/link";
 import TrackPageView from "@/components/TrackPageView";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -25,9 +26,9 @@ export default function Home() {
             className="text-lg lg:text-xl font-normal leading-relaxed mb-10 max-w-md"
             style={{ color: "#FFF8EF", textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}
           >
-            完成5分钟趣味测试
+            5分钟探索TA的性格
             <br />
-            解锁你家毛孩子的专属人格
+            每只毛孩子都是独一无二的
           </p>
           <Link
             href="/test"
@@ -59,7 +60,7 @@ export default function Home() {
               5分钟，了解你的毛孩子
             </h2>
             <p className="text-base font-normal text-brand-muted leading-relaxed">
-              基于行为心理学设计，20道趣味题目，科学又有趣
+              基于行为心理学设计，20+趣味题目5分钟了解毛孩子
             </p>
           </div>
 
@@ -68,13 +69,13 @@ export default function Home() {
             <div className="flex items-center gap-3 bg-brand-surface rounded-xl border border-brand-border px-5 py-4 flex-1">
               <span className="text-2xl">🧠</span>
               <span className="text-sm text-brand-text">
-                20道趣味行为题，科学又有趣
+                20+道趣味行为题，科学又有趣
               </span>
             </div>
             <div className="flex items-center gap-3 bg-brand-surface rounded-xl border border-brand-border px-5 py-4 flex-1">
               <span className="text-2xl">🎭</span>
               <span className="text-sm text-brand-text">
-                16种宠物人格，看看你家的像哪个
+                16型宠物MBTI，看看你家毛孩子是哪个
               </span>
             </div>
             <div className="flex items-center gap-3 bg-brand-surface rounded-xl border border-brand-border px-5 py-4 flex-1">
@@ -87,10 +88,12 @@ export default function Home() {
 
           {/* Disclaimer */}
           <p className="text-xs text-brand-muted/40 text-center max-w-sm leading-relaxed">
-            * 本测试仅供娱乐参考，不构成专业心理学评估。结果基于趣味行为问卷，请勿作为决策依据。
+            * 本测试仅供娱乐参考，不构成专业评估。结果基于趣味行为问卷，请勿作为决策依据。
           </p>
         </div>
       </section>
+
+      <Footer />
     </>
   );
 }

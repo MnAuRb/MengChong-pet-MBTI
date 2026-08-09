@@ -100,6 +100,14 @@ export default function SharePage() {
             <Link href="/result" className="text-brand-muted text-sm underline underline-offset-4">
               返回结果页
             </Link>
+            <Link
+              href="/"
+              className="rounded-full bg-brand-primary hover:bg-brand-text text-white
+                         text-sm font-medium py-3 px-8 w-full text-center
+                         transition-colors"
+            >
+              ← 返回首页
+            </Link>
           </div>
         ) : status === "ready" && posterUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -146,12 +154,23 @@ export default function SharePage() {
 
         <Link
           href="/result"
-          className="rounded-full border-2 border-brand-primary text-brand-primary
-                     hover:bg-brand-surface-alt text-sm font-medium
+          className="inline-flex items-center justify-center
+                     rounded-full border-2 border-brand-primary text-brand-primary
+                     hover:bg-brand-primary/25 hover:border-brand-text hover:text-brand-text
+                     text-sm font-medium
                      py-3 px-8 w-full text-center
-                     transition-colors lg:w-auto lg:self-start"
+                     transition-colors lg:w-44 lg:self-start"
         >
           ← 返回结果页
+        </Link>
+        <Link
+          href="/"
+          className="inline-flex items-center justify-center
+                     rounded-full bg-brand-primary hover:bg-brand-text text-white
+                     text-sm font-medium py-3 px-8 w-full text-center
+                     transition-colors lg:w-44 lg:self-start"
+        >
+          ← 返回首页
         </Link>
       </div>
     </div>

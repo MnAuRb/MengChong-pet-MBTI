@@ -66,7 +66,7 @@ export default function Footer() {
 
       <div className="mx-auto max-w-4xl mt-12 pt-6 border-t border-brand-border/50">
         <p className="text-xs text-brand-muted/50 text-center">
-          © 2025 萌宠MBTI · 仅供娱乐参考，不构成专业心理建议
+          © 2026 萌宠MBTI · 仅供娱乐参考，不构成专业建议
         </p>
       </div>
     </footer>
