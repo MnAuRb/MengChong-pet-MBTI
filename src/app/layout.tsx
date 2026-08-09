@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" className="h-full antialiased bg-brand-bg">
-      <body className="min-h-full flex flex-col mx-auto bg-brand-bg text-brand-text sm:max-w-2xl lg:max-w-6xl">
+      <body className="min-h-full flex flex-col mx-auto bg-brand-bg text-brand-text">
         <ClientLayout>{children}</ClientLayout>
         <Analytics />
       </body>

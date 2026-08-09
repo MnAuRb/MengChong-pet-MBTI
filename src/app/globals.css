@@ -91,3 +91,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Hero section — responsive background images */
+.hero-bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('/images/hero/web1.png');
+}
+@media (max-width: 767px) {
+  .hero-bg {
+    background-image: url('/images/hero/phone1.png');
+  }
+}
