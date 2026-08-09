@@ -21,7 +21,6 @@ export default function SharePage() {
 
   const missing = !resultType || !petInfo;
 
-  // 每次挂载重置 ref
   useEffect(() => {
     fetchedRef.current = false;
   }, []);
@@ -36,7 +35,6 @@ export default function SharePage() {
         const info = petInfo!;
         const type = resultType!;
 
-        // 客户端 Canvas 合成海报，无需服务端请求
         const breedSlug = getBreedSlug(info.breed, info.type);
         const resultsMap: Record<string, MBTIResult> =
           info.type === "cat" ? catResults : dogResults;
@@ -66,8 +64,8 @@ export default function SharePage() {
 
       {/* 标题 — 手机显示在顶部，桌面端移到右栏 */}
       <div className="text-center lg:hidden">
-        <h2 className="text-xl font-bold text-warm-dark">分享你的毛孩子</h2>
-        <p className="text-sm text-warm-500 mt-1">
+        <h2 className="text-xl font-normal text-brand-text">分享你的毛孩子</h2>
+        <p className="text-sm text-brand-muted mt-1">
           长按图片保存到相册，分享给朋友
         </p>
       </div>
@@ -76,30 +74,30 @@ export default function SharePage() {
       <div className="flex-1 flex items-center justify-center lg:flex-initial">
         {missing ? (
           <div className="flex flex-col items-center gap-4 text-center">
-            <p className="text-red-500 text-sm">请先完成测试</p>
-            <Link href="/" className="text-warm font-medium underline text-sm">
+            <p className="text-brand-error text-sm">请先完成测试</p>
+            <Link href="/" className="text-brand-text font-normal underline underline-offset-4 text-sm">
               返回首页
             </Link>
           </div>
         ) : status === "loading" ? (
           <div className="flex flex-col items-center gap-3">
-            <div className="w-8 h-8 border-4 border-warm-200 border-t-warm rounded-full animate-spin" />
-            <p className="text-sm text-warm-500">正在生成海报……</p>
+            <div className="w-8 h-8 border-4 border-brand-surface-alt border-t-brand-primary rounded-full animate-spin" />
+            <p className="text-sm text-brand-muted">正在生成海报……</p>
           </div>
         ) : status === "error" ? (
           <div className="flex flex-col items-center gap-4 text-center">
-            <p className="text-red-500 text-sm">{errorMsg}</p>
+            <p className="text-brand-error text-sm">{errorMsg}</p>
             <button
               onClick={() => {
                 fetchedRef.current = false;
                 setStatus("loading");
                 setErrorMsg("");
               }}
-              className="text-warm font-medium underline text-sm"
+              className="text-brand-text font-normal underline underline-offset-4 text-sm"
             >
               重试
             </button>
-            <Link href="/result" className="text-warm-400 text-sm underline">
+            <Link href="/result" className="text-brand-muted text-sm underline underline-offset-4">
               返回结果页
             </Link>
           </div>
@@ -108,7 +106,7 @@ export default function SharePage() {
           <img
             src={posterUrl}
             alt="萌宠MBTI分享海报"
-            className="w-full rounded-card shadow-xl"
+            className="w-full rounded-lg"
             style={{ maxWidth: 375 }}
           />
         ) : null}
@@ -118,19 +116,19 @@ export default function SharePage() {
       <div className="flex flex-col gap-5 lg:gap-6">
         {/* 标题 — 仅桌面端显示 */}
         <div className="hidden lg:block">
-          <h2 className="text-xl font-bold text-warm-dark">分享你的毛孩子</h2>
-          <p className="text-sm text-warm-500 mt-1">
+          <h2 className="text-xl font-normal text-brand-text">分享你的毛孩子</h2>
+          <p className="text-sm text-brand-muted mt-1">
             长按图片保存到相册，分享给朋友
           </p>
         </div>
 
         {/* 保存提示 */}
         {status === "ready" && (
-          <div className="bg-warm-light rounded-card px-4 py-3 text-center lg:text-left">
-            <p className="text-sm font-medium text-warm-700">
+          <div className="bg-brand-surface-alt border border-brand-border rounded-lg px-4 py-3 text-center lg:text-left">
+            <p className="text-sm font-normal text-brand-text">
               👆 长按上方海报图片 → 保存到相册
             </p>
-            <p className="text-xs text-warm-500 mt-1">
+            <p className="text-xs text-brand-muted mt-1">
               然后分享到朋友圈、小红书或发给朋友！
             </p>
           </div>
@@ -138,8 +136,8 @@ export default function SharePage() {
 
         {/* 分享步骤引导 — 桌面端显示 */}
         <div className="hidden lg:flex lg:flex-col lg:gap-2">
-          <p className="text-sm font-medium text-warm-dark">📋 如何分享？</p>
-          <ol className="text-sm text-warm-500 space-y-1 list-decimal list-inside">
+          <p className="text-sm font-normal text-brand-text">📋 如何分享？</p>
+          <ol className="text-sm text-brand-muted space-y-1 list-decimal list-inside">
             <li>长按左侧海报保存到相册</li>
             <li>打开微信朋友圈或小红书</li>
             <li>选择图片发布，秀出你家毛孩子！</li>
@@ -148,9 +146,10 @@ export default function SharePage() {
 
         <Link
           href="/result"
-          className="bg-white hover:bg-warm-light text-warm font-bold
-                     py-3 px-8 rounded-button w-full text-center
-                     border-2 border-warm transition-colors lg:w-auto lg:self-start"
+          className="rounded-full border-2 border-brand-primary text-brand-primary
+                     hover:bg-brand-surface-alt text-sm font-medium
+                     py-3 px-8 w-full text-center
+                     transition-colors lg:w-auto lg:self-start"
         >
           ← 返回结果页
         </Link>

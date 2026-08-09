@@ -26,7 +26,6 @@ export default function PetInfoForm({ onNext }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState("");
 
-  // 当切换宠物类型时，重置品种选择
   function handleTypeChange(type: PetInfo["type"]) {
     setPetType(type);
     setBreed("");
@@ -35,7 +34,6 @@ export default function PetInfoForm({ onNext }: Props) {
     setHighlightIdx(-1);
   }
 
-  // 获取当前类型的品种列表（仅中文名，用于显示和搜索）
   function getBreeds(): string[] {
     switch (petType) {
       case "cat": return CAT_BREEDS.map((b) => b.name);
@@ -44,12 +42,10 @@ export default function PetInfoForm({ onNext }: Props) {
     }
   }
 
-  // 筛选后的品种
   const filteredBreeds = getBreeds().filter((b) =>
     breedSearch ? b.toLowerCase().includes(breedSearch.toLowerCase()) : true
   );
 
-  // 点击外部关闭下拉
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -61,7 +57,6 @@ export default function PetInfoForm({ onNext }: Props) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // 键盘导航
   function handleKeyDown(e: KeyboardEvent<HTMLInputElement>) {
     if (!showDropdown || filteredBreeds.length === 0) return;
 
@@ -127,14 +122,14 @@ export default function PetInfoForm({ onNext }: Props) {
     <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
       {/* 标题 */}
       <div className="text-center">
-        <h2 className="text-xl font-bold text-warm-dark">
-          先介绍一下你的毛孩子 🐾
+        <h2 className="text-2xl font-normal text-brand-text">
+          先介绍一下你的毛孩子
         </h2>
       </div>
 
       {/* 宠物名字 */}
       <div className="flex flex-col gap-2">
-        <label htmlFor="pet-name" className="text-sm font-medium text-warm-dark">
+        <label htmlFor="pet-name" className="text-sm font-normal text-brand-muted">
           名字
         </label>
         <input
@@ -144,31 +139,31 @@ export default function PetInfoForm({ onNext }: Props) {
           onChange={(e) => setName(e.target.value)}
           placeholder="例如：咪咪、旺财"
           maxLength={20}
-          className="w-full px-4 py-3 rounded-card border border-warm-200
-                     bg-white text-warm-dark placeholder-warm-300
-                     focus:outline-none focus:border-warm focus:ring-2 focus:ring-warm/20
+          className="w-full px-4 py-3 rounded-md border border-brand-border
+                     bg-brand-surface text-brand-text placeholder:text-brand-muted
+                     focus:outline-none focus:border-brand-focus focus:ring-1 focus:ring-brand-focus/20
                      transition-colors"
         />
       </div>
 
       {/* 宠物类型 */}
       <div className="flex flex-col gap-2">
-        <span className="text-sm font-medium text-warm-dark">类型</span>
+        <span className="text-sm font-normal text-brand-muted">类型</span>
         <div className="grid grid-cols-2 gap-3">
           {PET_TYPES.map((pt) => (
             <button
               key={pt.value}
               type="button"
               onClick={() => handleTypeChange(pt.value)}
-              className={`flex flex-col items-center gap-1 py-3 px-2 rounded-card border-2
-                         transition-all
+              className={`flex flex-col items-center gap-1 py-3 px-2 rounded-lg border
+                         transition-colors
                          ${petType === pt.value
-                           ? "border-warm bg-warm-light scale-105"
-                           : "border-warm-200 bg-white hover:border-warm-300"
+                           ? "border-brand-primary bg-brand-surface-alt"
+                           : "border-brand-border bg-brand-surface hover:border-brand-border-strong"
                          }`}
             >
               <span className="text-2xl">{pt.emoji}</span>
-              <span className="text-xs font-medium text-warm-dark">{pt.label}</span>
+              <span className="text-xs font-normal text-brand-text">{pt.label}</span>
             </button>
           ))}
         </div>
@@ -177,20 +172,19 @@ export default function PetInfoForm({ onNext }: Props) {
       {/* 品种搜索选择 */}
       {petType && (
         <div className="flex flex-col gap-2">
-          <span className="text-sm font-medium text-warm-dark">
+          <span className="text-sm font-normal text-brand-muted">
             品种
           </span>
 
-          {/* 已选品种 */}
           {breed ? (
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1 px-3 py-2 bg-warm-light
-                               text-warm-dark text-sm font-medium rounded-card border border-warm">
+              <span className="inline-flex items-center gap-1 px-3 py-2 bg-brand-surface-alt
+                               text-brand-text text-sm font-normal rounded-lg border border-brand-border">
                 {breed}
                 <button
                   type="button"
                   onClick={() => setBreed("")}
-                  className="ml-1 text-warm-400 hover:text-warm-dark transition-colors"
+                  className="ml-1 text-brand-muted hover:text-brand-text transition-colors"
                   aria-label="清除品种"
                 >
                   ✕
@@ -199,7 +193,7 @@ export default function PetInfoForm({ onNext }: Props) {
               <button
                 type="button"
                 onClick={() => { setShowDropdown(true); inputRef.current?.focus(); }}
-                className="text-sm text-warm hover:text-warm-600 underline"
+                className="text-sm text-brand-muted hover:text-brand-text underline underline-offset-4 transition-colors"
               >
                 更换
               </button>
@@ -218,26 +212,25 @@ export default function PetInfoForm({ onNext }: Props) {
                 onFocus={() => setShowDropdown(true)}
                 onKeyDown={handleKeyDown}
                 placeholder={`搜索${petType === "cat" ? "猫" : "狗"}的品种...`}
-                className="w-full px-4 py-3 rounded-card border border-warm-200
-                           bg-white text-warm-dark placeholder-warm-300
-                           focus:outline-none focus:border-warm focus:ring-2 focus:ring-warm/20
+                className="w-full px-4 py-3 rounded-md border border-brand-border
+                           bg-brand-surface text-brand-text placeholder:text-brand-muted
+                           focus:outline-none focus:border-brand-focus focus:ring-1 focus:ring-brand-focus/20
                            transition-colors"
               />
 
-              {/* 下拉选项 */}
               {showDropdown && filteredBreeds.length > 0 && (
-                <ul className="absolute z-10 w-full mt-1 bg-white border border-warm-200
-                               rounded-card shadow-lg max-h-48 overflow-y-auto">
+                <ul className="absolute z-10 w-full mt-1 bg-brand-surface border border-brand-border
+                               rounded-lg shadow-lg max-h-48 overflow-y-auto">
                   {filteredBreeds.map((b, idx) => (
                     <li key={b}>
                       <button
                         type="button"
                         onClick={() => selectBreed(b)}
-                        className={`w-full text-left px-4 py-2.5 text-sm text-warm-dark
+                        className={`w-full text-left px-4 py-2.5 text-sm text-brand-text
                                    transition-colors min-h-[44px]
                                    ${idx === highlightIdx
-                                     ? "bg-warm-light"
-                                     : "hover:bg-warm-50"
+                                     ? "bg-brand-surface-alt"
+                                     : "hover:bg-brand-surface-alt"
                                    }`}
                       >
                         {b}
@@ -247,10 +240,9 @@ export default function PetInfoForm({ onNext }: Props) {
                 </ul>
               )}
 
-              {/* 无匹配结果 */}
               {showDropdown && breedSearch && filteredBreeds.length === 0 && (
-                <div className="absolute z-10 w-full mt-1 bg-white border border-warm-200
-                                rounded-card shadow-lg p-4 text-center text-sm text-warm-400">
+                <div className="absolute z-10 w-full mt-1 bg-brand-surface border border-brand-border
+                                rounded-lg shadow-lg p-4 text-center text-sm text-brand-muted">
                   没有匹配的品种，请从列表中选择
                 </div>
               )}
@@ -261,11 +253,11 @@ export default function PetInfoForm({ onNext }: Props) {
 
       {!petType && (
         <div className="flex flex-col gap-2 opacity-50">
-          <span className="text-sm font-medium text-warm-dark">
+          <span className="text-sm font-normal text-brand-muted">
             品种
           </span>
-          <div className="w-full px-4 py-3 rounded-card border border-warm-100
-                          bg-warm-50/50 text-warm-300 text-sm">
+          <div className="w-full px-4 py-3 rounded-md border border-brand-border
+                          bg-brand-surface-alt text-brand-muted text-sm">
             请先选择宠物类型
           </div>
         </div>
@@ -273,17 +265,17 @@ export default function PetInfoForm({ onNext }: Props) {
 
       {/* 错误提示 */}
       {error && (
-        <p className="text-sm text-red-500 text-center">{error}</p>
+        <p className="text-sm text-brand-error text-center">{error}</p>
       )}
 
       {/* 提交按钮 */}
       <button
         type="submit"
-        className="bg-warm hover:bg-warm-600 text-white font-bold
-                   py-4 px-8 rounded-button w-full text-lg
-                   transition-colors shadow-lg shadow-warm/25"
+        className="rounded-full bg-brand-primary hover:bg-brand-text text-white
+                   text-sm font-medium py-3 px-8 w-full
+                   transition-colors"
       >
-        🐾 开始测试
+        开始测试
       </button>
     </form>
   );

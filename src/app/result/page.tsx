@@ -14,7 +14,6 @@ export default function ResultPage() {
       <div className="flex flex-col px-6 py-8 gap-6 lg:px-12 lg:py-10">
         <TrackPageView event="page_view_result" />
 
-        {/* 可滚动结果卡片 */}
         <ResultCard />
 
         {/* 操作按钮 */}
@@ -28,21 +27,22 @@ export default function ResultPage() {
                   mbti_type: resultType,
                 })
               }
-              className="bg-warm hover:bg-warm-600 text-white font-bold
-                         py-4 px-8 rounded-button w-full sm:flex-1 text-center text-lg
-                         transition-colors shadow-lg shadow-warm/25"
+              className="rounded-full bg-brand-primary hover:bg-brand-text text-white
+                         text-sm font-medium py-3.5 px-10 w-full sm:flex-1 text-center
+                         transition-colors"
             >
-              📤 生成分享海报
+              生成分享海报
             </Link>
 
             <Link
               href="/"
               onClick={() => track("click_retest")}
-              className="bg-white hover:bg-warm-light text-warm font-bold
-                         py-3 px-8 rounded-button w-full sm:flex-1 text-center
-                         border-2 border-warm transition-colors"
+              className="rounded-full border-2 border-brand-primary text-brand-primary
+                         hover:bg-brand-surface-alt text-sm font-medium
+                         py-3 px-8 w-full sm:flex-1 text-center
+                         transition-colors"
             >
-              🔄 再测一次
+              再测一次
             </Link>
           </div>
         )}

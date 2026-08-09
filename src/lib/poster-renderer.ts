@@ -1,29 +1,33 @@
 import type { MBTIResult, MBTIType } from "@/types";
 
-// 16 种 MBTI 海报配色 — 温馨暖色调
+// 16 种 MBTI 海报配色 — 四组人格色系
 const TYPE_COLORS: Record<string, { bg: string; accent: string }> = {
-  INTJ: { bg: "#FFF5F0", accent: "#E8734A" },
-  INTP: { bg: "#FFF8F3", accent: "#D4956B" },
-  ENTJ: { bg: "#FFF3ED", accent: "#C7513B" },
-  ENTP: { bg: "#FFFBF5", accent: "#E8A24E" },
-  INFJ: { bg: "#FDF5F7", accent: "#D4647E" },
-  INFP: { bg: "#FFF5F6", accent: "#C77D9E" },
-  ENFJ: { bg: "#FFF3F0", accent: "#E0554E" },
-  ENFP: { bg: "#FFFBF3", accent: "#F0A030" },
-  ISTJ: { bg: "#F8F4F0", accent: "#B8956E" },
-  ISFJ: { bg: "#FFF7F2", accent: "#D4956B" },
-  ESTJ: { bg: "#F7F5F2", accent: "#C7774A" },
-  ESFJ: { bg: "#FFF5EE", accent: "#E8885A" },
-  ISTP: { bg: "#F5F5F3", accent: "#A08060" },
-  ISFP: { bg: "#FFF6F4", accent: "#D88A7D" },
-  ESTP: { bg: "#FFF4ED", accent: "#E06030" },
-  ESFP: { bg: "#FFF8F0", accent: "#F4B840" },
+  // Analyst (NT) — 贵族紫
+  INTJ: { bg: "#F5F0F4", accent: "#68548E" },
+  INTP: { bg: "#F5F0F4", accent: "#68548E" },
+  ENTJ: { bg: "#F5F0F4", accent: "#68548E" },
+  ENTP: { bg: "#F5F0F4", accent: "#68548E" },
+  // Diplomat (NF) — 森林绿
+  INFJ: { bg: "#EEF5EA", accent: "#32986D" },
+  INFP: { bg: "#EEF5EA", accent: "#32986D" },
+  ENFJ: { bg: "#EEF5EA", accent: "#32986D" },
+  ENFP: { bg: "#EEF5EA", accent: "#32986D" },
+  // Sentinel (SJ) — 天空蓝
+  ISTJ: { bg: "#EFF6FD", accent: "#4D7BB8" },
+  ISFJ: { bg: "#EFF6FD", accent: "#4D7BB8" },
+  ESTJ: { bg: "#EFF6FD", accent: "#4D7BB8" },
+  ESFJ: { bg: "#EFF6FD", accent: "#4D7BB8" },
+  // Explorer (SP) — 蜂蜜黄
+  ISTP: { bg: "#FFF8E8", accent: "#F28C28" },
+  ISFP: { bg: "#FFF8E8", accent: "#F28C28" },
+  ESTP: { bg: "#FFF8E8", accent: "#F28C28" },
+  ESFP: { bg: "#FFF8E8", accent: "#F28C28" },
 };
 
 const CANVAS_W = 750;
 const CANVAS_H = 1200;
 const FONT_FAMILY = '"PingFang SC", "Microsoft YaHei", sans-serif';
-const TEXT_COLOR = "#2D1B14";
+const TEXT_COLOR = "#40342F";
 
 /** 加载图片，返回 HTMLImageElement */
 function loadImage(src: string): Promise<HTMLImageElement> {

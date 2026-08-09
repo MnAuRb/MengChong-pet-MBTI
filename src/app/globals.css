@@ -1,37 +1,92 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Warm color palette — 萌宠MBTI design system */
-  --color-warm: #FF8C42;
-  --color-warm-light: #FFF3E0;
-  --color-warm-dark: #2D1B14;
-  --color-warm-50: #FFF8F0;
-  --color-warm-100: #FFECD9;
-  --color-warm-200: #FFD9B3;
-  --color-warm-300: #FFC58C;
-  --color-warm-400: #FFB266;
-  --color-warm-500: #FF8C42;
-  --color-warm-600: #E67A38;
-  --color-warm-700: #CC6B2E;
-  --color-warm-800: #B35C24;
-  --color-warm-900: #994D1A;
+  /* === Brand Global UI === */
+  --color-brand-primary: #8C6958;
+  --color-brand-bg: #FFF8EF;
+  --color-brand-text: #40342F;
+  --color-brand-muted: #A18B7B;
+  --color-brand-surface: #FFFFFF;
+  --color-brand-surface-alt: #FDF6F1;
+  --color-brand-border: #EFE8DF;
+  --color-brand-border-strong: #DDD4C8;
+  --color-brand-focus: #B89886;
+  --color-brand-error: #D45555;
 
-  /* Background */
-  --color-background: #FFF8F0;
-  --color-foreground: #2D1B14;
+  /* === Analyst (NT) — INTJ, INTP, ENTJ, ENTP === */
+  --color-analyst-primary: #8D5E89;
+  --color-analyst-light: #AA80A5;
+  --color-analyst-surface: #F5F0F4;
+  --color-analyst-strong: #EADCE6;
+  --color-analyst-accent: #68548E;
+  --color-analyst-text: #4A3044;
+  --color-analyst-gradient: linear-gradient(135deg, #AA80A5, #68548E);
 
-  /* Font */
-  --font-sans: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", system-ui, -apple-system, sans-serif;
+  /* === Diplomat (NF) — INFJ, INFP, ENFJ, ENFP === */
+  --color-diplomat-primary: #3FA56F;
+  --color-diplomat-light: #78B957;
+  --color-diplomat-surface: #EEF5EA;
+  --color-diplomat-strong: #DDEBD3;
+  --color-diplomat-accent: #32986D;
+  --color-diplomat-text: #274B38;
+  --color-diplomat-gradient: linear-gradient(135deg, #78B957, #32986D);
 
-  /* Border radius — "胖乎乎"可爱感 */
-  --radius-card: 1.5rem;
-  --radius-button: 1rem;
+  /* === Sentinel (SJ) — ISTJ, ISFJ, ESTJ, ESFJ === */
+  --color-sentinel-primary: #6E98D0;
+  --color-sentinel-light: #9FC4EA;
+  --color-sentinel-surface: #EFF6FD;
+  --color-sentinel-strong: #D7E8F8;
+  --color-sentinel-accent: #4D7BB8;
+  --color-sentinel-text: #315C8D;
+  --color-sentinel-gradient: linear-gradient(135deg, #9FC4EA, #4D7BB8);
+
+  /* === Explorer (SP) — ISTP, ISFP, ESTP, ESFP === */
+  --color-explorer-primary: #F6B73C;
+  --color-explorer-light: #FFD85A;
+  --color-explorer-surface: #FFF8E8;
+  --color-explorer-strong: #FFE9B3;
+  --color-explorer-accent: #F28C28;
+  --color-explorer-text: #8A4A18;
+  --color-explorer-gradient: linear-gradient(135deg, #FFD85A, #F28C28);
+
+  /* === Typography === */
+  --text-display: 28px;
+  --text-display--line-height: 1.2;
+  --text-section: 22px;
+  --text-section--line-height: 1.3;
+  --text-card-title: 18px;
+  --text-card-title--line-height: 1.4;
+  --text-body: 15px;
+  --text-body--line-height: 1.6;
+  --text-button: 15px;
+  --text-button--line-height: 1.0;
+  --text-caption: 13px;
+  --text-caption--line-height: 1.5;
+  --text-micro: 11px;
+  --text-micro--line-height: 1.4;
+
+  /* === Radius === */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+  --radius-pill: 9999px;
+
+  /* === Shadows === */
+  --shadow-card: 0 2px 16px rgba(64, 52, 47, 0.06);
+  --shadow-result-analyst: 0 4px 20px rgba(141, 94, 137, 0.18);
+  --shadow-result-diplomat: 0 4px 20px rgba(63, 165, 111, 0.18);
+  --shadow-result-sentinel: 0 4px 20px rgba(110, 152, 208, 0.18);
+  --shadow-result-explorer: 0 4px 20px rgba(246, 183, 60, 0.18);
+
+  /* === Font === */
+  --font-sans: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
 }
 
 /* Reset & base */
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
+  background: var(--color-brand-bg);
+  color: var(--color-brand-text);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -118,7 +118,7 @@ export default function LoadingPage() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
       >
-        <h2 className="text-xl font-bold text-warm-dark">
+        <h2 className="text-xl font-normal text-brand-text">
           正在分析你的毛孩子...
         </h2>
         <motion.div
@@ -126,13 +126,13 @@ export default function LoadingPage() {
           animate={{ opacity: [1, 0.3, 1] }}
           transition={{ duration: 1.2, repeat: Infinity }}
         >
-          <span className="w-2 h-2 rounded-full bg-warm" />
-          <span className="w-2 h-2 rounded-full bg-warm" />
-          <span className="w-2 h-2 rounded-full bg-warm" />
+          <span className="w-2 h-2 rounded-full bg-brand-primary" />
+          <span className="w-2 h-2 rounded-full bg-brand-primary" />
+          <span className="w-2 h-2 rounded-full bg-brand-primary" />
         </motion.div>
       </motion.div>
 
-      <p className="text-sm text-warm-400 text-center max-w-xs">
+      <p className="text-sm text-brand-muted text-center max-w-xs">
         性格分析、行为特征识别、专属人格匹配……
       </p>
     </div>
